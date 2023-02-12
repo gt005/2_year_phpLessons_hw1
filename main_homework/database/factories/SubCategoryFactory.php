@@ -19,7 +19,7 @@ class SubCategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->words(1, true),
-            'App\Models\Category' => Category::query()->inRandomOrder()->first()->id,
+            'category_id' => Category::query()->inRandomOrder()->first()->id,
         ];
     }
 }

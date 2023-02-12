@@ -23,11 +23,11 @@ return new class extends Migration
             $table->unsignedBigInteger('price');
             $table->string('image')->nullable();
 
-            $table->foreignId(Category::class)
+            $table->foreignId('category_id')
                 ->onDelete('null')
                 ->onUpdate('cascade');
 
-             $table->foreignId(SubCategory::class)
+             $table->foreignId('sub_category_id')
                 ->onDelete('null')
                 ->onUpdate('cascade');
         });

@@ -22,8 +22,8 @@ class ProductFactory extends Factory
             'name' => $this->faker->words(2, true),
             'description' => $this->faker->text(100),
             'price' => $this->faker->numberBetween(100, 100000),
-            'App\Models\Category' => Category::query()->inRandomOrder()->first()->id,
-            'App\Models\SubCategory' => SubCategory::query()->inRandomOrder()->first()->id,
+            'category_id' => Category::query()->inRandomOrder()->first()->id,
+            'sub_category_id' => SubCategory::query()->inRandomOrder()->first()->id,
             'image'=>'https://source.unsplash.com/random'
 
         ];

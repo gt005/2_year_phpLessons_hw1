@@ -20,7 +20,7 @@ class OrderFactory extends Factory
         return [
             'order_number' => $this->faker->numberBetween(100000, 999999),
             'order_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'App\Models\User' => User::query()->inRandomOrder()->first()->id,
+            'user_id' => User::query()->inRandomOrder()->first()->id,
         ];
     }
 }

@@ -22,11 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('product_price');
             $table->unsignedBigInteger('amount');
 
-            $table->foreignId(Order::class)
+            $table->foreignId('order_id')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignId(Product::class)
+            $table->foreignId('product_id')
                 ->onDelete('null')
                 ->onUpdate('cascade');
         });

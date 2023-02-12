@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
 
-            $table->foreignId(Category::class)
+            $table->foreignId('category_id')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

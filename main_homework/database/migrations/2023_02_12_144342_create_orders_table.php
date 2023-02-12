@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_number');
             $table->date('order_date');
 
-            $table->foreignId(User::class)
+            $table->foreignId('user_id')
                 ->onDelete('null')
                 ->onUpdate('cascade');
         });

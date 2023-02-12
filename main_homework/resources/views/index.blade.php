@@ -9,6 +9,23 @@
 </head>
 <body>
 
+<ul>
+    @foreach($categories as $category)
+        <li>
+            <p>
+                {{ $category->name }}
+            </p>
+        </li>
+
+        @endforeach
+</ul>
+
+<h1>Далее подкатегории для первой категории</h1>
+    @foreach($categories[0]->subcategories as $sub)
+        <p>
+            {{ $sub->name }}
+        </p>
+    @endforeach
 
 
 </body>

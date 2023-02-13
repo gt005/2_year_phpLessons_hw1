@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/products_list.css">
 
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-between ">
             <h1 class="profile-name">
                 Добро пожаловать, {{ Auth::user()->name }}
+            </h1>
+            <div class="profile-logout d-flex align-items-center">
                 <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Выйти
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </h1>
+            </div>
         </div>
     </div>
     <div class="row mt-4">

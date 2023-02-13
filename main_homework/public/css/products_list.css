@@ -1,3 +1,12 @@
+a {
+  text-decoration: none;
+  color: #000;
+  border-bottom: 1px solid transparent;
+}
+a:hover {
+  border-bottom: 1px solid #000;
+}
+
 .order-list {
   margin-top: 16px;
 }
@@ -21,7 +30,7 @@
 .order-item__product {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin: 16px 0;
 }
 
 .order-item__product__image img {
@@ -41,4 +50,4 @@
   align-items: center;
 }
 
-/*# sourceMappingURL=profile.css.map */
+/*# sourceMappingURL=products_list.css.map */

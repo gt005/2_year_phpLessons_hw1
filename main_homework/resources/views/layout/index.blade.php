@@ -23,7 +23,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Каталог</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Корзина</a>
+                        <a class="nav-link" href="{{ route('cart_page') }}">Корзина</a>
                     </li>
                     <li class="nav-item ms-auto">
                         <a class="nav-link" href="{{ route('profile') }}">Личный кабинет</a>

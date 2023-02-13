@@ -17,14 +17,19 @@
                             Подробнее
                         </a>
                         @auth
-                            <form method="POST" action="{{ route('add_to_cart') }}" class="ms-1">
-                                @csrf
-                                <input name="id" type="hidden"  value="{{ $product->id }}" class="form-control" placeholder="Id">
-                                <input name="name" type="hidden" value="{{ $product->name }}" class="form-control" placeholder="name">
-                                <input name="price" type="hidden" value="{{ $product->price }}" class="form-control" placeholder="price">
-                                <input name="quantity" type="hidden" value="1" class="form-control" placeholder="quantity">
-                                <input href="" type="submit" class="btn btn-outline-secondary category-header__buttons-block__button" value="В корзину">
-                            </form>
+                            @if(in_array($product->id, $raw_cart_items))
+
+                                <input type="submit" disabled class="btn btn-secondary category-header__buttons-block__button" value="В корзинe">
+                            @else
+                                <form method="POST" action="{{ route('add_to_cart') }}" class="ms-1">
+                                    @csrf
+                                    <input name="id" type="hidden"  value="{{ $product->id }}" class="form-control" placeholder="Id">
+                                    <input name="name" type="hidden" value="{{ $product->name }}" class="form-control" placeholder="name">
+                                    <input name="price" type="hidden" value="{{ $product->price }}" class="form-control" placeholder="price">
+                                    <input name="quantity" type="hidden" value="1" class="form-control" placeholder="quantity">
+                                    <input type="submit" class="btn btn-outline-secondary category-header__buttons-block__button" value="В корзину">
+                                </form>
+                            @endif
                         @else
                             <a href="{{ route('login') }}" type="button" class="btn btn-outline-secondary category-header__buttons-block__button ms-1">
                                 В корзину

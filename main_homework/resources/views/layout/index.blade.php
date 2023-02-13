@@ -18,15 +18,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav w-100">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Каталог</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Корзина</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Личный кабинет</a>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="{{ route('profile') }}">Личный кабинет</a>
                     </li>
                 </ul>
             </div>

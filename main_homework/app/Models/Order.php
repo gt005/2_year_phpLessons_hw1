@@ -15,6 +15,15 @@ class Order extends Model
         'order_date',
     ];
 
+    public function getTotalOrderSum()
+    {
+        $totalSum = 0;
+        foreach ($this->orderItems as $item) {
+            $totalSum += $item->product_price * $item->amount;
+        }
+        return $totalSum;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

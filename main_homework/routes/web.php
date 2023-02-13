@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 // Подключи контроллер MainPageController и используй его метод index
 //Route::get('/', 'MainPageController')->name('index');
 
-Route::get('/', 'App\Http\Controllers\MainPageController@index')->name('index.show');
+Route::get('/{category?}', 'App\Http\Controllers\CatalogController@index')->name('index');

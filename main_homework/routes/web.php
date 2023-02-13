@@ -23,6 +23,10 @@ Route::get('/profile', 'App\Http\Controllers\HomeController@index')->name('profi
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart_page');
 Route::post('/add_to_cart', 'App\Http\Controllers\CartController@addToCart')->name('add_to_cart');
+Route::post('/remove_from_cart', 'App\Http\Controllers\CartController@removeFromCart')->name('remove_from_cart');
+Route::post('/change_amount_in_cart', 'App\Http\Controllers\CartController@changeProductAmount')->name('change_amount_in_cart');
+Route::post('/change_amount_in_cart', 'App\Http\Controllers\CartController@changeProductAmount')->name('change_amount_in_cart');
+Route::post('/submit_order', 'App\Http\Controllers\CartController@submitOrder')->name('submit_order');
 
 Auth::routes();
 

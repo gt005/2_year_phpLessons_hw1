@@ -22,9 +22,11 @@
                     <li class="nav-item">
                         <a class="nav-link @yield('header-link-active_catalog')" aria-current="page" href="{{ route('index') }}">Каталог</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link @yield('header-link-active_cart')" href="{{ route('cart_page') }}">Корзина</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link @yield('header-link-active_cart')" href="{{ route('cart_page') }}">Корзина</a>
+                        </li>
+                    @endauth
                     <li class="nav-item ms-auto">
                         <a class="nav-link @yield('header-link-active_profile')" href="{{ route('profile') }}">Личный кабинет</a>
                     </li>

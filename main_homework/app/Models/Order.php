@@ -11,6 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'order_number',
         'order_date',
     ];
@@ -22,6 +23,15 @@ class Order extends Model
             $totalSum += $item->product_price * $item->amount;
         }
         return $totalSum;
+    }
+
+    public static function getLastOrderNumber()
+    {
+        $lastOrder = Order::orderBy('order_number', 'desc')->first();
+        if ($lastOrder) {
+            return $lastOrder->order_number;
+        }
+        return 0;
     }
 
     public function user()

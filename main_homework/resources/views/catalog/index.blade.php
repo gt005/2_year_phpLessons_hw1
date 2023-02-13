@@ -3,7 +3,7 @@
 @section('links')
     <link rel="stylesheet" href="/css/catalog_page.css">
 @endsection
-
+@section('header-link-active_catalog')active @endsection
 @section('content')
 
     <div class="category-header">

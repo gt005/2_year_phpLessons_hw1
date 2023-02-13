@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('header-link-active_profile')active @endsection
+
 @section('content')
     <link rel="stylesheet" href="/css/products_list.css">
 

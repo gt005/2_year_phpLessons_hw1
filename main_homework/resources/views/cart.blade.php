@@ -1,5 +1,7 @@
 @extends('layout.index')
 
+@section('header-link-active_cart')active @endsection
+
 @section('content')
     <link rel="stylesheet" href="/css/products_list.css">
     <div class="container">

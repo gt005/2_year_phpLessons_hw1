@@ -1,0 +1,28 @@
+.product-cont {
+  margin-top: 75px;
+}
+
+.product-cont__product-img img {
+  object-fit: cover;
+  width: -webkit-fill-available;
+  max-height: 250px;
+}
+
+.product-cont__product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.product-cont__product-info h1 {
+  width: min-content;
+}
+.product-cont__product-info a {
+  width: fit-content;
+}
+
+.product-description-cont {
+  margin-top: 50px;
+}
+
+/*# sourceMappingURL=product.css.map */

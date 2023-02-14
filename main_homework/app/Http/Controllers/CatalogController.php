@@ -56,6 +56,17 @@ class CatalogController extends Controller
     {
         $query = $request->input('search_text');
 
+        $user = auth()->user();
+
+        $raw_cart_items = [];
+
+        if ($user != null) {
+
+            foreach (\Cart::session($user->id)->getContent() as $item) {
+                $raw_cart_items[] = $item->id;
+            }
+        }
+
         if ($query == null) {
             return redirect()->route('index');
         }
@@ -63,6 +74,6 @@ class CatalogController extends Controller
         $categories = Category::all();
         $products = Product::where('name', 'like', '%' . $query . '%')->get();
 
-        return view('catalog.index', compact('products', 'categories'));
+        return view('catalog.index', compact('products', 'categories', 'raw_cart_items'));
     }
 }

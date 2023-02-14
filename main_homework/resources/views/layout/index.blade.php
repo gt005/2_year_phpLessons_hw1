@@ -29,7 +29,11 @@
                     @endauth
                     @role('Admin')
                         <li class="nav-item">
-                            <a class="nav-link @yield('header-link-active_users')" href="/users">Пользователи</a>
+                            <a class="nav-link @yield('header-link-active_users')" href="{{ route('users.index') }}">Пользователи</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @yield('header-link-active_order_list')" href="{{ route('order_list') }}">Заказы</a>
                         </li>
 
                     @endrole

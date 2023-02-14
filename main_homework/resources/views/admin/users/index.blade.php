@@ -4,13 +4,18 @@
 @section('content')
 
     <h2 class="text-center my-5">Список пользователей</h2>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <a class="btn btn-outline-secondary" href="{{ route('users.create') }}">Создать пользователя</a>
                 <table class="mt-5 table table-bordered">
                     <tr>
-                        <th>No</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Roles</th>
@@ -28,10 +33,9 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                                <a class="btn btn-outline-secondary" href="{{ route('users.edit',$user->id) }}">Edit</a>
                                 {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-outline-danger']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

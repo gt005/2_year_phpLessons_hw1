@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,20 +23,23 @@ Route::get('/category/{category}', 'App\Http\Controllers\CatalogController@categ
 Route::get('/product/{product:id}', 'App\Http\Controllers\ProductController@index')->name('product');
 Route::get('/search/', 'App\Http\Controllers\CatalogController@search')->name('search');
 
-Route::get('/profile', 'App\Http\Controllers\HomeController@index')->name('profile');
 
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart_page');
-Route::post('/add_to_cart', 'App\Http\Controllers\CartController@addToCart')->name('add_to_cart');
-Route::post('/remove_from_cart', 'App\Http\Controllers\CartController@removeFromCart')->name('remove_from_cart');
-Route::post('/change_amount_in_cart', 'App\Http\Controllers\CartController@changeProductAmount')->name('change_amount_in_cart');
-Route::post('/change_amount_in_cart', 'App\Http\Controllers\CartController@changeProductAmount')->name('change_amount_in_cart');
-Route::post('/submit_order', 'App\Http\Controllers\CartController@submitOrder')->name('submit_order');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart_page');
+    Route::get('/profile', 'App\Http\Controllers\HomeController@index')->name('profile');
+
+    Route::post('/add_to_cart', 'App\Http\Controllers\CartController@addToCart')->name('add_to_cart');
+    Route::post('/remove_from_cart', 'App\Http\Controllers\CartController@removeFromCart')->name('remove_from_cart');
+    Route::post('/change_amount_in_cart', 'App\Http\Controllers\CartController@changeProductAmount')->name('change_amount_in_cart');
+    Route::post('/change_amount_in_cart', 'App\Http\Controllers\CartController@changeProductAmount')->name('change_amount_in_cart');
+    Route::post('/submit_order', 'App\Http\Controllers\CartController@submitOrder')->name('submit_order');
+});
+
 
 Auth::routes();
 
 Route::group(['middleware' => ['role:Admin']], function() {
-    Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
+    Route::get('/admin_order_list', 'App\Http\Controllers\OrderListController@index')->name('order_list');
 });
 

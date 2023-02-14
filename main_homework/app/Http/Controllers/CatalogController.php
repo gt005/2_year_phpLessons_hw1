@@ -13,10 +13,12 @@ class CatalogController extends Controller
     public function index()
     {
         $user = auth()->user();
-
         $raw_cart_items = [];
-        foreach (\Cart::session($user->id)->getContent() as $item) {
-            $raw_cart_items[] = $item->id;
+
+        if ($user != null) {
+            foreach (\Cart::session($user->id)->getContent() as $item) {
+                $raw_cart_items[] = $item->id;
+            }
         }
 
         $categories = Category::all();
@@ -30,8 +32,12 @@ class CatalogController extends Controller
         $user = auth()->user();
 
         $raw_cart_items = [];
-        foreach (\Cart::session($user->id)->getContent() as $item) {
-            $raw_cart_items[] = $item->id;
+
+        if ($user != null) {
+
+            foreach (\Cart::session($user->id)->getContent() as $item) {
+                $raw_cart_items[] = $item->id;
+            }
         }
 
         $activeCategory = Category::where('name', $activeCategory)->first();
@@ -44,5 +50,19 @@ class CatalogController extends Controller
         $categories = SubCategory::where('category_id', $activeCategory->id)->get();
 
         return view('catalog.category', compact('categories', 'products', 'activeCategory', 'raw_cart_items'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search_text');
+
+        if ($query == null) {
+            return redirect()->route('index');
+        }
+
+        $categories = Category::all();
+        $products = Product::where('name', 'like', '%' . $query . '%')->get();
+
+        return view('catalog.index', compact('products', 'categories'));
     }
 }

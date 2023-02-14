@@ -16,7 +16,18 @@
                     <div class="product-cont__product-info">
                         <h1>{{ $product->name }}</h1>
                         <p id="productPrice">{{ $product->price }} руб</p>
-                        <a href="" class="btn btn-outline-secondary">В корзину</a>
+                        @auth
+                            <form method="POST" action="{{ route('add_to_cart') }}" class="ms-1">
+                                @csrf
+                                <input name="id" type="hidden"  value="{{ $product->id }}" class="form-control" placeholder="Id">
+                                <input name="name" type="hidden" value="{{ $product->name }}" class="form-control" placeholder="name">
+                                <input name="price" type="hidden" value="{{ $product->price }}" class="form-control" placeholder="price">
+                                <input name="quantity" type="hidden" value="1" class="form-control" placeholder="quantity">
+                                <input type="submit" class="btn btn-outline-secondary category-header__buttons-block__button" value="В корзину">
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-outline-secondary category-header__buttons-block__button">Войдите, чтобы добавить в корзину</a>
+                        @endauth
                     </div>
                 </div>
             </div>

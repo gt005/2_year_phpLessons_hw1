@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Cart;
+use Illuminate\Validation\Validator;
 
 class CartController extends Controller
 {
@@ -32,6 +33,13 @@ class CartController extends Controller
     {
         $user = auth()->user();
 
+        $request->validate([
+            'id' => 'required|integer',
+            'name' => 'required|string',
+            'price' => 'required|integer',
+            'quantity' => 'required|integer',
+        ]);
+
         \Cart::session($user->id)->add(array(
             'id' => $request->id,
             'name' => $request->name,
@@ -55,14 +63,23 @@ class CartController extends Controller
     {
         $user = auth()->user();
 
+        $request->validate([
+            'id' => 'required|integer',
+            'quantity' => 'required|integer',
+        ]);
+
         \Cart::session($user->id)->get($request->id)->quantity = $request->quantity;
 
         return redirect()->route('cart_page');
     }
 
-    public function submitOrder()
+    public function submitOrder(Request $request)
     {
         $user = auth()->user();
+
+        if (\Cart::session($user->id)->isEmpty()) {
+            return redirect()->route('cart_page');
+        }
 
         $new_order = Order::create([
             'user_id' => $user->id,
@@ -70,7 +87,17 @@ class CartController extends Controller
             'order_number' => Order::getLastOrderNumber() + 1,
         ]);
 
+
         foreach (\Cart::session($user->id)->getContent() as $item) {
+            // todo: Сделать валидацию
+//            $request->validate([
+//                'product_name' => 'required|string',
+//                'order_id' => 'required|integer',
+//                'product_id' => 'required|integer',
+//                'product_price' => 'required|integer',
+//                'amount' => 'required|integer',
+//            ]);
+
             OrderItem::create([
                 'product_name' => $item->name,
                 'order_id' => $new_order->id,
@@ -82,6 +109,6 @@ class CartController extends Controller
 
         \Cart::session($user->id)->clear();
 
-        return redirect()->route('cart_page');
+        return redirect()->route('profile');
     }
 }

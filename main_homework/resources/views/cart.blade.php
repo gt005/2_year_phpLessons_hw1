@@ -53,17 +53,20 @@
                 @endforeach
             </div>
         </div>
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="me-5">
-                    <h2>Итого: <span class="price-number-to-change">{{ $cart_total }}</span> руб.</h2>
-                    <form method="POST" action="{{ route('submit_order') }}">
-                        @csrf
-                        <input type="submit" class="btn btn-outline-secondary category-header__buttons-block__button" value="Подтвердить заказ">
-                    </form>
+        @if(count($cart_items) != 0)
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="me-5">
+                        <h2>Итого: <span class="price-number-to-change">{{ $cart_total }}</span> руб.</h2>
+                        <form method="POST" action="{{ route('submit_order') }}">
+                            @csrf
+                            <input type="submit" class="btn btn-outline-secondary category-header__buttons-block__button" value="Подтвердить заказ">
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
     </div>
 
 

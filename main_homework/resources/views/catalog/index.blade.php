@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="catalog-products__search-block">
-                        <form class="catalog-products__header__search-block__search-input">
+                        <form method="get" action="{{ route('search') }}" class="catalog-products__header__search-block__search-input">
                             <input name="search_text" type="text" class="form-control" placeholder="Поиск">
                             <input name="search_button" type="submit" class="btn btn-outline-secondary category-header__buttons-block__button" value="Поиск">
                         </form>

@@ -27,6 +27,12 @@
                             <a class="nav-link @yield('header-link-active_cart')" href="{{ route('cart_page') }}">Корзина</a>
                         </li>
                     @endauth
+                    @role('Admin')
+                        <li class="nav-item">
+                            <a class="nav-link @yield('header-link-active_users')" href="/users">Пользователи</a>
+                        </li>
+
+                    @endrole
                     <li class="nav-item ms-auto">
                         <a class="nav-link @yield('header-link-active_profile')" href="{{ route('profile') }}">Личный кабинет</a>
                     </li>

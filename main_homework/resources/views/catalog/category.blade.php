@@ -21,7 +21,16 @@
                 </div>
             </div>
             <div class="row">
-
+                <div class="col-12">
+                    <div class="category-header__buttons-block">
+                        <p>Категории:</p>
+                        @foreach($categories as $category)
+                            <a href="{{ route('category', ['category' => $category->name]) }}" type="button" class="btn btn-outline-secondary category-header__buttons-block__button">
+                                {{ $category->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

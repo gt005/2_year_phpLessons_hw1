@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\CatalogController@index')->name('index');
 Route::get('/category/{category}', 'App\Http\Controllers\CatalogController@category')->name('category');
 Route::get('/product/{product:id}', 'App\Http\Controllers\ProductController@index')->name('product');
+Route::get('/search/', 'App\Http\Controllers\CatalogController@search')->name('search');
+
 Route::get('/profile', 'App\Http\Controllers\HomeController@index')->name('profile');
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart_page');
@@ -30,4 +35,9 @@ Route::post('/submit_order', 'App\Http\Controllers\CartController@submitOrder')-
 
 Auth::routes();
 
+Route::group(['middleware' => ['role:Admin']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+});
 
